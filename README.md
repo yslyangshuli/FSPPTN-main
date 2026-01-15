@@ -26,11 +26,23 @@ python setup.py develop
 ```
 python basicsr/train.py -opt options/train/FSPPTN/train_FSPPTN_SRx2_scratch.yml
 ```
+```
+python basicsr/train.py -opt options/train/FSPPTN/train_FSPPTN_SRx3_scratch.yml
+```
+```
+python basicsr/train.py -opt options/train/FSPPTN/train_FSPPTN_SRx4_scratch.yml
+```
 
 - The distributed training command is as follows:
 
 ```
 python -m torch.distributed.run --nproc_per_node=2 --master_port=18584 basicsr/train.py -opt options/train/FSPPTN/train_FSPPTN_SRx2_scratch.yml --launcher pytorch --auto_resume
+```
+```
+python -m torch.distributed.run --nproc_per_node=2 --master_port=18584 basicsr/train.py -opt options/train/FSPPTN/train_FSPPTN_SRx3_scratch.yml --launcher pytorch --auto_resume
+```
+```
+python -m torch.distributed.run --nproc_per_node=2 --master_port=18584 basicsr/train.py -opt options/train/FSPPTN/train_FSPPTN_SRx4_scratch.yml --launcher pytorch --auto_resume
 ```
 
 The training logs and weights will be saved in the `./experiments` folder.
@@ -41,6 +53,12 @@ The training logs and weights will be saved in the `./experiments` folder.
 
 ```
 python basicsr/test.py -opt options/test/test_FSPPTN_x2.yml
+```
+```
+python basicsr/test.py -opt options/test/test_FSPPTN_x3.yml
+```
+```
+python basicsr/test.py -opt options/test/test_FSPPTN_x4.yml
 ```
 
 ## Citation
