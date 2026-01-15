@@ -43,7 +43,8 @@ The training logs and weights will be saved in the `./experiments` folder.
 
 ## How To Test 
 
-- Refer to `./options/test/FSPPTN` for the configuration file of the model to be tested.
+- Refer to `./options/test/FSPPTN` for the configuration file of the model to be tested, and prepare the testing data and pretrained model.
+- The pretrained models are available in [Baidu Netdisk]( https://pan.baidu.com/s/1xKR153SCbT_6b25SAhRn_w?pwd=bra5 )
 
 ```
 python basicsr/test.py -opt options/test/test_FSPPTN_x2.yml
