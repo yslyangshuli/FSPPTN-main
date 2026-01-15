@@ -1,0 +1,110 @@
+# general settings
+name: train_FSPPTN_x3
+model_type: FSPPTNModel
+scale: 3
+num_gpu: auto
+manual_seed: 0
+
+# dataset and data loader settings
+datasets:
+  train:
+    name: DIV2K
+    type: PairedImageDataset
+    dataroot_gt: datasets/DIV2K/DIV2K_train_HR_sub.lmdb
+    dataroot_lq: datasets/DIV2K/DIV2K_train_LR_bicubic/X3_sub.lmdb
+    meta_info_file: data/meta_info/meta_info_DIV2K800sub_GT.txt
+    filename_tmpl: '{}'
+    io_backend:
+      type: lmdb
+
+    gt_size: 192
+    use_hflip: true
+    use_rot: true
+
+    # data loader
+    num_worker_per_gpu: 1
+    batch_size_per_gpu: 32
+    dataset_enlarge_ratio: 1
+    prefetch_mode: ~
+
+  val:
+    name: Set5
+    type: PairedImageDataset
+    dataroot_gt: datasets/benchmark/Set5/HR
+    dataroot_lq: datasets/benchmark/Set5/LR_bicubic/X3
+    io_backend:
+      type: disk
+
+# network structures
+network_g:
+  type: FSPPTN
+  upscale: 3
+  in_chans: 3
+  img_size: 64
+  intra_window_size: 8
+  inter_window_size: 16
+  img_range: 1.
+  depths: [3, 3, 3, 3]
+  embed_dim: 48
+  num_heads: [6, 6, 6, 6]
+  mlp_ratio: 2
+  upsampler: 'pixelshuffledirect'
+  resi_connection: '1conv'
+
+# path
+path:
+  pretrain_network_g: ~  #
+  strict_load_g: true
+  resume_state: ~
+
+# training settings
+train:
+  ema_decay: 0.999
+  optim_g:
+    type: Adam
+    lr: !!float 5e-4
+    weight_decay: 0
+    betas: [0.9, 0.99]
+
+  scheduler:
+    type: MultiStepLR
+    milestones: [250000, 450000, 600000, 700000, 750000, 775000, 800000]  #[500000, 900000, 1200000, 1400000, 1500000, 1550000, 1600000]，[250000, 450000, 600000, 700000, 750000, 775000, 800000]
+    gamma: 0.5
+
+  total_iter: 810000
+  warmup_iter: -1  # no warm up
+
+  # losses
+  pixel_opt:
+    type: CharbonnierLoss
+    loss_weight: 1.0
+    reduction: mean
+
+# validation settings
+val:
+  val_freq: !!float 5e3
+  save_img: false
+
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 3
+      test_y_channel: true
+    ssim:
+      type: calculate_ssim
+      crop_border: 3
+      test_y_channel: true
+
+# logging settings
+logger:
+  print_freq: 200
+  save_checkpoint_freq: !!float 5e3
+  use_tb_logger: true
+  wandb:
+    project: ~
+    resume_id: 5000
+
+# dist training settings
+dist_params:
+  backend: nccl
+  port: 29500
