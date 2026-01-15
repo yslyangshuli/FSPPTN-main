@@ -1050,22 +1050,3 @@ class FSPPTN(nn.Module):
 
         return x
 
-from ptflops import get_model_complexity_info
-if __name__ == '__main__':
-    upscale = 4
-    inter_window_size = 16
-    model = FSPPTN(
-        upscale=4,
-        img_size=(320, 176),
-        inter_window_size=inter_window_size,
-        img_range=1.,
-        depths=[4,3,3,3],
-        embed_dim=48,
-        num_heads=[6,6,6,6],
-        mlp_ratio=2,
-        upsampler='pixelshuffledirect')
-    macs, params = get_model_complexity_info(model, (3, 320, 176), as_strings=True,
-                                             print_per_layer_stat=True, verbose=True)
-    print("ptflops_FLOPs={}".format(macs))            # ptflops_FLOPs=38.36 GMac
-    print("ptflops_param={}".format(params))          # ptflops_param=38.36 GMac
-
