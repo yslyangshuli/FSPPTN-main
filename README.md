@@ -25,11 +25,9 @@ python setup.py develop
 
 ```
 python basicsr/train.py -opt options/train/FSPPTN/train_FSPPTN_SRx2_scratch.yml
-```
-```
+
 python basicsr/train.py -opt options/train/FSPPTN/train_FSPPTN_SRx3_scratch.yml
-```
-```
+
 python basicsr/train.py -opt options/train/FSPPTN/train_FSPPTN_SRx4_scratch.yml
 ```
 
