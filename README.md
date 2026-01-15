@@ -35,11 +35,9 @@ python basicsr/train.py -opt options/train/FSPPTN/train_FSPPTN_SRx4_scratch.yml
 
 ```
 python -m torch.distributed.run --nproc_per_node=2 --master_port=18584 basicsr/train.py -opt options/train/FSPPTN/train_FSPPTN_SRx2_scratch.yml --launcher pytorch --auto_resume
-```
-```
+
 python -m torch.distributed.run --nproc_per_node=2 --master_port=18584 basicsr/train.py -opt options/train/FSPPTN/train_FSPPTN_SRx3_scratch.yml --launcher pytorch --auto_resume
-```
-```
+
 python -m torch.distributed.run --nproc_per_node=2 --master_port=18584 basicsr/train.py -opt options/train/FSPPTN/train_FSPPTN_SRx4_scratch.yml --launcher pytorch --auto_resume
 ```
 
@@ -51,11 +49,9 @@ The training logs and weights will be saved in the `./experiments` folder.
 
 ```
 python basicsr/test.py -opt options/test/test_FSPPTN_x2.yml
-```
-```
+
 python basicsr/test.py -opt options/test/test_FSPPTN_x3.yml
-```
-```
+
 python basicsr/test.py -opt options/test/test_FSPPTN_x4.yml
 ```
 
