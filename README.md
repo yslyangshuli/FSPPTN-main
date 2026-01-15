@@ -1,10 +1,9 @@
-# FSPPTN [[Paper Link]] ()
+# FSPPTN [[Paper Link]] 
 
 Shuli Yang, Shu Tang*, Xinbo Gao, Xianzhong Xie, Jiaxu Leng
 
 This repository is an official implementation of the paper "A Lightweight Frequency-Selection-based Progressive Patch Transformer Network for Single Image Super-Resolution".
 
-## [[ArxiV]()]
 
 # News: FSPPTN is now available!
 
