@@ -5,8 +5,6 @@ Shuli Yang, Shu Tang*, Xinbo Gao, Xianzhong Xie, Jiaxu Leng
 This repository is an official implementation of the paper "A Lightweight Frequency-Selection-based Progressive Patch Transformer Network for Single Image Super-Resolution".
 
 
-# News: FSPPTN is now available!
-
 ## Environment
 - Platforms: Ubuntu, CUDA >= 11.8
 - python >= 3.10
