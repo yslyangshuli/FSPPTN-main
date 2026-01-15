@@ -71,4 +71,4 @@ Thanks for their awesome works.
 
 ## Contact
 
-If you have any question, please email tangshu@cqupt.edu.cn.
+If you have any question, please email d210201031@stu.cqupt.edu.cn.
